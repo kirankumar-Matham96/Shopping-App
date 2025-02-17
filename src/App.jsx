@@ -1,6 +1,8 @@
 import React, { Suspense, lazy, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
+import { Provider } from "react-redux";
+import { store } from "./redux/store";
 
 const Home = lazy(() => import("./pages/Home"));
 const Shop = lazy(() => import("./pages/Shop"));
@@ -13,17 +15,19 @@ function App() {
   return (
     <div className="min-h-[100vh] px-60 py-5 light-theme adaptive">
       <BrowserRouter>
-        <Navbar />
-        <Suspense fallback={<h1>Loading...</h1>}>
-          <Routes>
-            <Route exact path="/" element={<Home />} />
-            <Route path="/shop" element={<Shop />} />
-            <Route path="/product" element={<Product />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/cart" element={<Cart />} />
-          </Routes>
-        </Suspense>
+        <Provider store={store}>
+          <Navbar />
+          <Suspense fallback={<h1>Loading...</h1>}>
+            <Routes>
+              <Route exact path="/" element={<Home />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/shop" element={<Shop />} />
+              <Route path="/product" element={<Product />} />
+              <Route path="/cart" element={<Cart />} />
+            </Routes>
+          </Suspense>
+        </Provider>
       </BrowserRouter>
     </div>
   );
