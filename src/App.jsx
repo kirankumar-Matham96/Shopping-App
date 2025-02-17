@@ -1,4 +1,4 @@
-import React, { Suspense, lazy } from "react";
+import React, { Suspense, lazy, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 
@@ -11,7 +11,7 @@ const Cart = lazy(() => import("./pages/Cart"));
 
 function App() {
   return (
-    <div className="min-h-[100vh] px-60">
+    <div className="min-h-[100vh] px-60 py-5 light-theme adaptive">
       <BrowserRouter>
         <Navbar />
         <Suspense fallback={<h1>Loading...</h1>}>
