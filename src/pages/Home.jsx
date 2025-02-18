@@ -1,7 +1,12 @@
 import React from "react";
+import RecommendedProducts from "../components/RecommendedProducts";
 
 const Home = () => {
-  return <div>Home</div>;
+  return (
+    <div>
+      <RecommendedProducts />
+    </div>
+  );
 };
 
 export default Home;

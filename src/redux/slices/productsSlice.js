@@ -139,12 +139,11 @@ const productsSlice = createSlice({
       })
       .addCase(fetchProducts.fulfilled, (state, action) => {
         state.products = action.payload;
-        // state.filteredProducts = action.payload;
         state.categories = [
           ...new Set(action.payload.map((product) => product.category)),
         ];
         state.recommendedProducts = action.payload
-          .filter((product) => product.rating >= 4)
+          .filter((product) => product.rating.rate >= 4)
           .slice(0, 6);
         state.isLoading = false;
 

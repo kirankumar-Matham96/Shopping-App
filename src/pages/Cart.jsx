@@ -5,6 +5,7 @@ import {
   removeFromCart,
 } from "../redux/slices/productsSlice";
 import Products from "../components/Products";
+import RecommendedProducts from "../components/RecommendedProducts";
 
 const Cart = () => {
   const { cartProducts, totalPrice } = useSelector(productsSelector);
@@ -28,7 +29,7 @@ const Cart = () => {
   return (
     <div>
       <h2 className="text-3xl font-semibold mb-5">Shopping Cart</h2>
-      <div className="flex">
+      <div className="flex mb-8">
         <div className="flex flex-col w-[25%]">
           <p className="text-2xl">
             Total Price: <br />$ {totalPrice} USD
@@ -47,6 +48,7 @@ const Cart = () => {
           />
         </ul>
       </div>
+      <RecommendedProducts />
     </div>
   );
 };

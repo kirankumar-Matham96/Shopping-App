@@ -25,13 +25,8 @@ const Shop = () => {
 
   /**
    * // TODO:
-   *  -> infinite scrolling
    *  -> Language and currency changes by the options
-   *  -> Add Recommended Products section
    */
-  // make it facet filter
-  // <p className="">{product.category}</p>
-  // <p className="">{product.rating.rate}</p>
   return (
     <div>
       <h2 className="text-3xl font-semibold mb-5">Shop</h2>

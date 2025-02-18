@@ -1,11 +1,11 @@
 import React from "react";
-import Rating from "./Rating";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import {
   addToCart,
   reduceQuantityFromCart,
 } from "../redux/slices/productsSlice";
+import Rating from "./Rating";
 import { MdDelete } from "react-icons/md";
 import { CiCirclePlus, CiCircleMinus } from "react-icons/ci";
 
@@ -13,13 +13,19 @@ const Products = ({ products, handleClick }) => {
   const location = useLocation();
   const dispatch = useDispatch();
 
+  const navigate = useNavigate();
+
+  const handleRedirection = (id) => {
+    navigate(`/product/${id}`);
+  };
+
   return (
     <>
-      {console.log("🚀 ~ Products ~ products:", products)}
       {products.map((product) => (
         <li
           key={product.id}
           className="w-[16rem] h-auto bg-white px-3 pt-3 pb-5 rounded-2xl"
+          onClick={() => handleRedirection(product.id)}
         >
           <img
             className="w-[100%] aspect-square"
