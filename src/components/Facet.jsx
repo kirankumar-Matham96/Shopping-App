@@ -51,9 +51,11 @@ const Facet = ({ title, items, type = "checkbox", onFilterChange }) => {
   return (
     <div className="p-2">
       <ErrorBoundary FallbackComponent={ErrorComponent}>
-        <div>
-          <h2 className="mt-3 mb-2">{title}</h2>
-          <button onClick={clearFilters}>Clear X</button>
+        <div className="flex justify-between items-center px-3">
+          <h2 className="mt-3 mb-2 text-xl font-semibold">{title}</h2>
+          {selectedFilters.length > 0 && type !== "range" && (
+            <button onClick={clearFilters}>Clear</button>
+          )}
         </div>
         <ul className="px-3">
           {type === "checkbox" &&

@@ -8,7 +8,7 @@ import {
 } from "../redux/slices/productsSlice";
 
 const SideBar = () => {
-  const { categories, filters } = useSelector(productsSelector);
+  const { categories } = useSelector(productsSelector);
   const dispatch = useDispatch();
 
   const handleFilterChange = (filterType, values) => {

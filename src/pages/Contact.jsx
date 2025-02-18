@@ -4,7 +4,7 @@ const Contact = () => {
   const [countryCode, setCountryCode] = useState("+91");
   return (
     <div>
-      <h2 className="text-3xl my-5">Contact</h2>
+      <h2 className="text-3xl font-semibold my-5">Contact</h2>
       <div className="flex items-center">
         <img
           className="w-[40%] rounded-4xl"

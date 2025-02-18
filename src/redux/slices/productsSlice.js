@@ -27,10 +27,18 @@ const INITIAL_STATE = {
     price: 0,
     rating: [],
   },
+  filteredProducts: JSON.parse(localStorage.getItem("products")) || [],
   recommendedProducts:
     JSON.parse(localStorage.getItem("recommended_products")) || [],
-  filteredProducts: JSON.parse(localStorage.getItem("products")) || [],
   cartProducts: JSON.parse(localStorage.getItem("cart_products")) || [],
+  totalPrice: localStorage.getItem("total_price") || 0,
+};
+
+const calculateTotalPrice = (cartProducts) => {
+  const cost = cartProducts
+    .reduce((total, product) => total + product.price * product.cartQuantity, 0)
+    .toFixed(2);
+  return parseFloat(cost);
 };
 
 const productsSlice = createSlice({
@@ -80,6 +88,49 @@ const productsSlice = createSlice({
       }
       state.filteredProducts = filtered; // Finally update the filteredProducts state
     },
+    addToCart: (state, action) => {
+      const item = state.products.find(
+        (product) => product.id === action.payload
+      );
+      const isItemExistsInCart = state.cartProducts.find(
+        (item) => item.id === action.payload
+      );
+      console.log("🚀 ~ isItemExistsInCart:", isItemExistsInCart);
+
+      if (!isItemExistsInCart || isItemExistsInCart === -1) {
+        item.cartQuantity = 1;
+        state.cartProducts.push(item);
+      } else {
+        isItemExistsInCart.cartQuantity++;
+      }
+      state.totalPrice = calculateTotalPrice(state.cartProducts);
+      localStorage.setItem("total_price", JSON.stringify(state.totalPrice));
+      localStorage.setItem("cart_products", JSON.stringify(state.cartProducts));
+    },
+    reduceQuantityFromCart: (state, action) => {
+      const item = state.cartProducts.find(
+        (product) => product.id === action.payload
+      );
+      if (item.cartQuantity > 1) {
+        item.cartQuantity--;
+      } else {
+        state.cartProducts = state.cartProducts.filter(
+          (product) => product.id !== action.payload
+        );
+      }
+      state.totalPrice = calculateTotalPrice(state.cartProducts);
+      localStorage.setItem("total_price", JSON.stringify(state.totalPrice));
+      localStorage.setItem("cart_products", JSON.stringify(state.cartProducts));
+    },
+    removeFromCart: (state, action) => {
+      state.cartProducts = state.cartProducts.filter(
+        (product) => product.id !== action.payload
+      );
+      state.totalPrice = calculateTotalPrice(state.cartProducts);
+
+      localStorage.setItem("total_price", JSON.stringify(state.totalPrice));
+      localStorage.setItem("cart_products", JSON.stringify(state.cartProducts));
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -111,8 +162,14 @@ const productsSlice = createSlice({
 });
 
 // export actions
-export const { filterProducts, setFilters, setSearchTerm } =
-  productsSlice.actions;
+export const {
+  filterProducts,
+  setFilters,
+  setSearchTerm,
+  addToCart,
+  reduceQuantityFromCart,
+  removeFromCart,
+} = productsSlice.actions;
 // export selector
 export const productsSelector = (state) => state.products;
 // export reducer
