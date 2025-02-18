@@ -4,6 +4,9 @@ import axios from "axios";
 export const fetchProducts = createAsyncThunk(
   "products/fetchProducts",
   async (args, thunkApi) => {
+    const { products } = thunkApi.getState().products;
+    if (products.length > 0) return products;
+
     try {
       const response = await axios.get(import.meta.env.VITE_FAKE_STORE_API);
       return response.data;
@@ -17,7 +20,7 @@ export const fetchProducts = createAsyncThunk(
 const INITIAL_STATE = {
   isLoading: false,
   error: null,
-  products: [],
+  products: JSON.parse(localStorage.getItem("products")) || [],
 };
 
 const productsSlice = createSlice({
@@ -32,6 +35,7 @@ const productsSlice = createSlice({
       .addCase(fetchProducts.fulfilled, (state, action) => {
         state.products = action.payload;
         state.isLoading = false;
+        localStorage.setItem("products", JSON.stringify(action.payload));
       })
       .addCase(fetchProducts.rejected, (state, action) => {
         state.error = action.payload;
