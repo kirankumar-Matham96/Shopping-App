@@ -13,6 +13,17 @@ const Contact = lazy(() => import("./pages/Contact"));
 const Cart = lazy(() => import("./pages/Cart"));
 const Loading = lazy(() => import("./components/Loading"));
 
+/**
+ * // TODO: 
+ *  -> Make the currency change reflect the data
+ *  -> Change the text direction for the Arabic
+ *  -> Modify the Home Page
+ *  -> Make it responsive
+ *  -> Add readme
+ *  -> Add comments
+ *  -> Add Service worker
+ */
+
 function App() {
   const { language: selectedLanguage } = useSelector(languageSelector);
 

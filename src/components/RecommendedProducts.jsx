@@ -1,6 +1,8 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { productsSelector } from "../redux/slices/productsSlice";
+import { currencySelector } from "../redux/slices/currencySlice";
+import { formatCurrency } from "../util/formatCurrency.util";
 import { useNavigate } from "react-router-dom";
 import Rating from "./Rating";
 import { useTranslate } from "../hooks/useTranslate";
@@ -8,6 +10,7 @@ import { useTranslate } from "../hooks/useTranslate";
 const RecommendedProducts = () => {
   const { t } = useTranslate();
   const { recommendedProducts } = useSelector(productsSelector);
+  const { currency } = useSelector(currencySelector);
   const navigate = useNavigate();
 
   const handleRedirection = (id) => {
@@ -35,7 +38,9 @@ const RecommendedProducts = () => {
               {t(product.title)}
             </h3>
             <Rating rating={product.rating.rate} />
-            <p className="text-gray-900">$ {product.price} USD</p>
+            <p className="text-gray-900">
+              {formatCurrency(product.price, currency)}
+            </p>
           </li>
         ))}
       </ul>

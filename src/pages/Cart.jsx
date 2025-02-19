@@ -1,17 +1,20 @@
-import React from "react";
+import React, { use } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   productsSelector,
   removeFromCart,
-  clearCart
+  clearCart,
 } from "../redux/slices/productsSlice";
+import { currencySelector } from "../redux/slices/currencySlice";
 import Products from "../components/Products";
 import RecommendedProducts from "../components/RecommendedProducts";
 import { useTranslate } from "../hooks/useTranslate";
 import { notifySuccess } from "../components/Notification";
+import { formatCurrency } from "../util/formatCurrency.util";
 
 const Cart = () => {
   const { cartProducts, totalPrice } = useSelector(productsSelector);
+  const { currency } = useSelector(currencySelector);
   const dispatch = useDispatch();
   const { t } = useTranslate();
   /**
@@ -46,7 +49,8 @@ const Cart = () => {
       <div className="flex mb-8">
         <div className="flex flex-col w-[25%]">
           <p className="text-2xl">
-            {t("total_price")}: <br />$ {totalPrice} USD
+            {t("total_price")}: <br />
+            {formatCurrency(totalPrice, currency)}
           </p>
           <button
             className="border-2 self-start p-3 mt-3"

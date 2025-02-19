@@ -1,16 +1,19 @@
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   addToCart,
   reduceQuantityFromCart,
 } from "../redux/slices/productsSlice";
+import { currencySelector } from "../redux/slices/currencySlice";
 import Rating from "./Rating";
 import { MdDelete } from "react-icons/md";
 import { CiCirclePlus, CiCircleMinus } from "react-icons/ci";
 import { useTranslate } from "../hooks/useTranslate";
+import { formatCurrency } from "../util/formatCurrency.util";
 
 const Products = ({ products, handleClick, isInCart }) => {
+  const { currency } = useSelector(currencySelector);
   const location = useLocation();
   const dispatch = useDispatch();
   const { t } = useTranslate();
@@ -46,7 +49,9 @@ const Products = ({ products, handleClick, isInCart }) => {
             <p className="flex items-center gap-2 mb-1">
               <Rating rating={product.rating.rate} /> {product.rating.count}
             </p>
-            <p className="text-xl">$ {product.price} USD</p>
+            <p className="text-xl">
+              {formatCurrency(product.price, currency)}
+            </p>
 
             {location.pathname === "/cart" ? (
               <div className="mb-2 flex items-center justify-between">

@@ -106,8 +106,8 @@
     "danvouy_womens_t_shirt_casual_cotton_short": "DANVOUY Womens T Shirt Casual Cotton Short",
     "95%cotton,5%spandex,_features:_casual,_short_sleeve,_letter_print,v-neck,fashion_tees,_the_fabric_is_soft_and_has_some_stretch.,_occasion:_casual/office/beach/school/home/street._season:_spring,summer,autumn,winter.": "95%Cotton,5%Spandex, Features: Casual, Short Sleeve, Letter Print,V-Neck,Fashion Tees, The fabric is soft and has some stretch., Occasion: Casual/Office/Beach/School/Home/Street. Season: Spring,Summer,Autumn,Winter."
   },
-
   "fr": {
+    "no_products_in_the_cart": "Aucun produit dans le panier",
     "in_cart": "Dans le panier",
     "men's_clothing": "Vêtements pour hommes",
     "jewelery": "Bijoux",
@@ -175,6 +175,7 @@
     "fjallraven_-_foldsack_no._1_backpack,_fits_15_laptops": "Fjällräven - Sac à dos pliable n° 1, pour 15 ordinateurs portables"
   },
   "es": {
+    "no_products_in_the_cart": "No hay productos en el carrito",
     "in_cart": "En el carrito",
     "men's_clothing": "Ropa de hombre",
     "jewelery": "Joyería",
@@ -242,6 +243,7 @@
     "fjallraven_-_foldsack_no._1_backpack,_fits_15_laptops": "Fjallraven - Mochila plegable n.º 1, para 15 portátiles"
   },
   "de": {
+    "no_products_in_the_cart": "Keine Produkte im Warenkorb",
     "in_cart": "Im Warenkorb",
     "men's_clothing": "Herrenbekleidung",
     "jewelery": "Schmuck",
@@ -309,6 +311,7 @@
     "fjallraven_-_foldsack_no._1_backpack,_fits_15_laptops": "Fjällräven - Foldsack No. 1 Rucksack, passend für 15 Laptops"
   },
   "zh": {
+    "no_products_in_the_cart": "购物车中没有产品",
     "in_cart": "在购物车中",
     "men's_clothing": "男装",
     "jewelery": "珠宝",
@@ -376,6 +379,7 @@
     "fjallraven_-_foldsack_no._1_backpack,_fits_15_laptops": "Fjallraven - Foldsack No. 1 背包，适合 15 台笔记本电脑"
   },
   "ja": {
+    "no_products_in_the_cart": "カートに商品がありません",
     "in_cart": "カートに入っています",
     "men's_clothing": "メンズ服",
     "jewelery": "ジュエリー",
@@ -443,6 +447,7 @@
     "fjallraven_-_foldsack_no._1_backpack,_fits_15_laptops": "Fjallraven - Foldsack No. 1 バックパック、15 台のラップトップに適合"
   },
   "ru": {
+    "no_products_in_the_cart": "В корзине нет товаров",
     "in_cart": "В корзине",
     "men's_clothing": "Мужская одежда",
     "jewelery": "Ювелирные изделия",
@@ -510,6 +515,7 @@
     "fjallraven_-_foldsack_no._1_backpack,_fits_15_laptops": "Fjallraven - складной рюкзак No1, вмещает 15 ноутбуков"
   },
   "pt": {
+    "no_products_in_the_cart": "Nenhum produto no carrinho",
     "in_cart": "No carrinho",
     "men's_clothing": "Roupas masculinas",
     "jewelery": "Joias",
@@ -577,6 +583,7 @@
     "fjallraven_-_foldsack_no._1_backpack,_fits_15_laptops": "Fjallraven - Mochila Foldsack No. 1, Cabe 15 Laptops"
   },
   "hi": {
+    "no_products_in_the_cart": "कार्ट में कोई उत्पाद नहीं है",
     "in_cart": "कार्ट में",
     "men's_clothing": "पुरुषों के कपड़े",
     "jewelery": "आभूषण",
@@ -644,6 +651,7 @@
     "fjallraven_-_foldsack_no._1_backpack,_fits_15_laptops": "Fjallraven - Foldsack नंबर 1 बैकपैक, 15 लैपटॉप फिट बैठता है"
   },
   "ko": {
+    "no_products_in_the_cart": "장바구니에 상품이 없습니다",
     "in_cart": "장바구니에 있음",
     "men's_clothing": "남성 의류",
     "jewelery": "보석류",
@@ -710,8 +718,8 @@
     "italian": "이탈리아어",
     "fjallraven_-_foldsack_no._1_backpack,_fits_15_laptops": "Fjallraven - 접이식 No. 1 백팩, 노트북 15대 수납 가능"
   },
-
   "it": {
+    "no_products_in_the_cart": "Nessun prodotto nel carrello",
     "men's_clothing": "Abbigliamento uomo",
     "jewelery": "Gioielli",
     "electronics": "Elettronica",
@@ -781,7 +789,7 @@
   },
   "ar": {
     "in_cart": "في العربة",
-
+    "no_products_in_the_cart": "لا توجد منتجات في العربة",
     "men's_clothing": "ملابس رجالية",
     "jewelery": "مجوهرات",
     "electronics": "إلكترونيات",

@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 import { useTranslate } from "../hooks/useTranslate";
+import { currencySelector } from "../redux/slices/currencySlice.js";
+import { useSelector } from "react-redux";
 
 const Facet = ({ title, items, type = "checkbox", onFilterChange }) => {
   const { t } = useTranslate();
+  const { currency } = useSelector(currencySelector);
 
   const [selectedFilters, setSelectedFilters] = useState(
     type === "range" ? 1000 : []
@@ -57,6 +60,7 @@ const Facet = ({ title, items, type = "checkbox", onFilterChange }) => {
         <div className="flex justify-between items-center px-3">
           <h2 className="mt-3 mb-2 text-xl font-semibold">
             {t(title.toLowerCase().split(" ").join("_")) || title}
+            {title === "Price" ? ` (${currency})` : ""}
           </h2>
           {selectedFilters.length > 0 && type !== "range" && (
             <button onClick={clearFilters}>{t("clear")}</button>
@@ -117,7 +121,7 @@ const Facet = ({ title, items, type = "checkbox", onFilterChange }) => {
                 onChange={handleSelectOption}
                 className="w-full"
               />
-              <span>${selectedFilters}</span>
+              <span> {selectedFilters}</span>
             </li>
           )}
         </ul>

@@ -13,7 +13,7 @@ import { useTranslate } from "../hooks/useTranslate.js";
 const Shop = () => {
   const { t } = useTranslate();
   const { isLoading, error, filteredProducts, cartProducts } =
-    useSelector(productsSelector);
+  useSelector(productsSelector);
   const dispatch = useDispatch();
 
   useEffect(() => {

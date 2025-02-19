@@ -2,15 +2,18 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import RecommendedProducts from "../components/RecommendedProducts";
 import { productsSelector, addToCart } from "../redux/slices/productsSlice";
+import { currencySelector } from "../redux/slices/currencySlice";
 import { useDispatch, useSelector } from "react-redux";
 import Rating from "../components/Rating";
 import { useTranslate } from "../hooks/useTranslate";
+import { formatCurrency } from "../util/formatCurrency.util";
 
 const Product = () => {
   const { t } = useTranslate();
   const { id } = useParams();
-  const dispatch = useDispatch();
   const { products, cartProducts } = useSelector(productsSelector);
+  const { currency } = useSelector(currencySelector);
+  const dispatch = useDispatch();
   const [isInCart, setIsInCart] = useState(
     cartProducts.find((product) => {
       return product.id == id;
@@ -42,10 +45,6 @@ const Product = () => {
       </div>
     );
 
-  /**
-   * // TODO:
-   *  -> Language and currency changes by the options
-   *  */
   return (
     <div>
       <div className="flex justify-between mb-8 gap-10">
@@ -61,7 +60,9 @@ const Product = () => {
           <p className="text-2xl my-2">
             {product.rating.count - 1} + {t("ratings")}
           </p>
-          <p className="my-2 font-semibold text-3xl">$ {product.price} USD</p>
+          <p className="my-2 font-semibold text-3xl">
+            {formatCurrency(product.price, currency)}
+          </p>
           {isInCart ? (
             <p className="text-2xl text-amber-500">
               {t("this_product_is_in_your_cart.")}
