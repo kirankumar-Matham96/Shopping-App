@@ -6,17 +6,19 @@ import {
   notifyInfo,
   notifyDanger,
 } from "../../components/Notification";
+import { convertPrice } from "../../util/convertPrice.util";
 
 export const fetchProducts = createAsyncThunk(
   "products/fetchProducts",
   async (args, thunkApi) => {
     const { products } = thunkApi.getState().products;
-    console.log("🚀 ~ products:", products);
     if (products.length > 0) return products;
 
     try {
       const response = await axios.get(import.meta.env.VITE_FAKE_STORE_API);
-      console.log("🚀 ~ response.data:", response.data);
+      response.data.map(
+        (item) => (item.currency = localStorage.getItem("currency") || "USD")
+      );
       return response.data;
     } catch (error) {
       console.log(`Failed to fetch data: ${error}`);
@@ -145,7 +147,7 @@ const productsSlice = createSlice({
       state.totalPrice = 0;
       localStorage.setItem("total_price", JSON.stringify(state.totalPrice));
       localStorage.setItem("cart_products", JSON.stringify(state.cartProducts));
-    },
+    }
   },
   extraReducers: (builder) => {
     builder

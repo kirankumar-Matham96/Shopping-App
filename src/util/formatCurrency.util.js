@@ -1,8 +1,7 @@
-import exchangeRates from "../assets/currencyExchange.json";
+import { convertPrice } from "./convertPrice.util";
 
 export const formatCurrency = (price, currency) => {
-  const rate = exchangeRates[currency] || 1;
-  const convertedPrice = price * rate;
+  const convertedPrice = convertPrice(price, "USD", currency);
 
   const formattedCurrency = new Intl.NumberFormat(undefined, {
     style: "currency",

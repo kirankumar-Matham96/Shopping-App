@@ -1,4 +1,3 @@
-import React from "react";
 import { setCurrency, currencySelector } from "../redux/slices/currencySlice";
 import { useDispatch, useSelector } from "react-redux";
 import exchangeRates from "../assets/currencyExchange.json";
@@ -20,7 +19,7 @@ const CurrencyChanger = () => {
       className="currency-dropdown"
     >
       {Object.keys(exchangeRates).map((curr) => (
-        <option key={curr} value={curr}>
+        <option key={curr} value={curr} className="text-gray-900">
           {curr}
         </option>
       ))}

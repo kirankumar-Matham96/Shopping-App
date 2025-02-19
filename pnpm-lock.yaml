@@ -35,6 +35,9 @@ importers:
       react-dom:
         specifier: ^19.0.0
         version: 19.0.0(react@19.0.0)
+      react-dropdown:
+        specifier: ^1.11.0
+        version: 1.11.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       react-error-boundary:
         specifier: ^5.0.0
         version: 5.0.0(react@19.0.0)
@@ -764,6 +767,9 @@ packages:
     resolution: {integrity: sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==}
     engines: {node: '>=10'}
 
+  classnames@2.5.1:
+    resolution: {integrity: sha512-saHYOzhIQs6wy2sVxTM6bUDsQO4F50V9RQ22qBpEdCW+I+/Wmke2HOl6lS6dTpdxVhb88/I6+Hs+438c3lfUow==}
+
   clsx@2.1.1:
     resolution: {integrity: sha512-eYm0QWBtUrBWZWG0d386OGAw16Z995PiOVo2B7bjWSbHedGl5e0ZWaq65kOGgUSNesEIDkB9ISbTg/JK9dhCZA==}
     engines: {node: '>=6'}
@@ -1490,6 +1496,12 @@ packages:
     resolution: {integrity: sha512-4GV5sHFG0e/0AD4X+ySy6UJd3jVl1iNsNHdpad0qhABJ11twS3TTBnseqsKurKcsNqCEFeGL3uLpVChpIO3QfQ==}
     peerDependencies:
       react: ^19.0.0
+
+  react-dropdown@1.11.0:
+    resolution: {integrity: sha512-E2UWetRPxNdIhQahXw6b984ME7WmcgDj9AEAjrtS/oyLCFVo+2qkCfcS06C22JR0Zj+YLnygwv0Ozf6VKKDq7g==}
+    peerDependencies:
+      react: ^0.14.7 || ^15.0.0-0 || ^16.0.0 || ^17.0.0 || ^18.0.0
+      react-dom: ^0.14.7 || ^15.0.0-0 || ^16.0.0 || ^17.0.0|| ^18.0.0
 
   react-error-boundary@5.0.0:
     resolution: {integrity: sha512-tnjAxG+IkpLephNcePNA7v6F/QpWLH8He65+DmedchDwg162JZqx4NmbXj0mlAYVVEd81OW7aFhmbsScYfiAFQ==}
@@ -2473,6 +2485,8 @@ snapshots:
       ansi-styles: 4.3.0
       supports-color: 7.2.0
 
+  classnames@2.5.1: {}
+
   clsx@2.1.1: {}
 
   color-convert@2.0.1:
@@ -3292,6 +3306,12 @@ snapshots:
     dependencies:
       react: 19.0.0
       scheduler: 0.25.0
+
+  react-dropdown@1.11.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0):
+    dependencies:
+      classnames: 2.5.1
+      react: 19.0.0
+      react-dom: 19.0.0(react@19.0.0)
 
   react-error-boundary@5.0.0(react@19.0.0):
     dependencies:

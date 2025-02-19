@@ -20,7 +20,7 @@ const SideBar = () => {
 
   return (
     <div>
-      <Facet title="Price" type="range" onFilterChange={handleFilterChange} />
+      {/* <Facet title="Price" type="range" onFilterChange={handleFilterChange} /> */}
       <Facet
         title="Categories"
         type="checkbox"

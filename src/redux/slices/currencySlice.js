@@ -1,18 +1,7 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-
-const getCurrencyValue = createAsyncThunk(
-  "currency/getCurrencyValue",
-  async (currency) => {
-    const response = await fetch(
-      `https://api.exchangerate-api.com/v4/latest/${currency}`
-    );
-    const data = await response.json();
-    return data;
-  }
-);
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  currency: "USD",
+  currency: localStorage.getItem("currency") || "USD",
 };
 
 const currencySlice = createSlice({
@@ -21,6 +10,7 @@ const currencySlice = createSlice({
   reducers: {
     setCurrency: (state, action) => {
       state.currency = action.payload;
+      localStorage.setItem("currency", action.payload);
     },
   },
 });
