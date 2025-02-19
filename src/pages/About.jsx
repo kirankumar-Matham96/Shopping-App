@@ -1,42 +1,92 @@
 import React from "react";
+import { useTranslate } from "../hooks/useTranslate";
+import { FaHandPointRight } from "react-icons/fa";
 
 const About = () => {
+  const { t } = useTranslate();
   return (
     <div>
-      <h2 className="text-3xl font-semibold my-5">About</h2>
-      <div className="flex">
+      <h2 className="text-3xl font-semibold my-5">{t("about")}</h2>
+      <div className="">
         <div className="text-base mr-10">
-          <p className="mb-3">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-            Perspiciatis quaerat, voluptatibus itaque aliquid nulla deleniti,
-            ullam totam adipisci aliquam officia maxime obcaecati voluptate,
-            harum iure laudantium tenetur dolorum? Labore, exercitationem!
-            Laborum porro veritatis a facere quaerat quidem quia omnis. Rem,
-            harum. Rerum nisi iusto fuga. Laudantium ipsam assumenda consequatur
-            consequuntur eos maiores debitis saepe, cum tempora eum enim iure
-            natus!
-          </p>
-          <p className="mb-3">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod
-            inventore dignissimos nam impedit reiciendis amet consequuntur atque
-            dolore ipsa nobis consectetur doloremque, molestiae iusto unde
-            veniam numquam aperiam totam voluptatibus? Repellendus, eum sunt
-            nisi aut accusantium autem delectus omnis nostrum, minus a obcaecati
-            debitis sequi enim eveniet sit quo. Omnis, maiores! Qui libero
-            voluptate quos, praesentium pariatur officia rem unde! Aliquam illum
-            facilis quos, odit aliquid neque, a illo error unde perferendis nisi
-            dolorum earum voluptatem animi voluptatibus omnis dignissimos
-            incidunt rerum commodi pariatur, tenetur assumenda asperiores?
-            Soluta, ex nobis!
-          </p>
-          <p className="mb-3">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. In
-            possimus amet asperiores sapiente aliquid itaque ullam perspiciatis
-            magni nisi minus eaque, eum aspernatur mollitia totam aliquam
-            officia assumenda deleniti consequuntur.
-          </p>
+          <p className="mb-16">{t("about_us_1")}</p>
+          <div className="flex gap-x-[6rem] mb-16">
+            <img
+              className="w-[40%] rounded-4xl"
+              src="/about.webp"
+              alt="about us"
+            />
+            <div>
+              <h2 className="text-2xl mb-3">{t("who_we_are")}</h2>
+              <p className="mb-3">{t("about_us_2")}</p>
+            </div>
+          </div>
+          <div className="flex mb-16">
+            <div>
+              <h2 className="text-2xl mb-3">{t("our_mission")}</h2>
+              <p className="mb-3">{t("about_us_3")}</p>
+            </div>
+            <img
+              className="w-[40%] rounded-4xl"
+              src="/about.webp"
+              alt="about us"
+            />
+          </div>
+          <div className="flex justify-between gap-x-20 mb-16">
+            <img
+              className="w-[40%] rounded-4xl"
+              src="/about.webp"
+              alt="about us"
+            />
+            <div>
+              <h2 className="text-2xl mb-3">{t("why_shop_with_us")}</h2>
+              <p className="flex justify-between items-start gap-x-3 mb-1">
+                <span className="text-2xl">
+                  <FaHandPointRight />
+                </span>
+                {t("about_us_4")}
+              </p>
+              <p className="flex items-start gap-x-3 mb-1">
+                <span className="text-2xl">
+                  <FaHandPointRight />
+                </span>
+                {t("about_us_5")}
+              </p>
+              <p className="flex items-start gap-x-3 mb-1">
+                <span className="text-2xl">
+                  <FaHandPointRight />
+                </span>
+                {t("about_us_6")}
+              </p>
+              <p className="flex items-start gap-x-3 mb-1">
+                <span className="text-2xl">
+                  <FaHandPointRight />
+                </span>
+                {t("about_us_7")}
+              </p>
+              <p className="flex items-start gap-x-3 mb-3">
+                <span className="text-2xl">
+                  <FaHandPointRight />
+                </span>
+                {t("about_us_8")}
+              </p>
+              <p className="mb-3">
+                {t("join_thousands_of_satisfied_customers")}
+              </p>
+            </div>
+          </div>
+          <div className="flex justify-between gap-x-20 mb-16">
+            <div>
+              <h2 className="text-2xl mb-3">{t("stay_connected")}</h2>
+              <p className="mb-3">{t("follow_us_on_social_media")}</p>
+            </div>
+            <img
+              className="w-[40%] rounded-4xl"
+              src="/about.webp"
+              alt="about us"
+            />
+          </div>
         </div>
-        <img className="w-[40%] rounded-4xl" src="/about.webp" alt="about us" />
       </div>
     </div>
   );

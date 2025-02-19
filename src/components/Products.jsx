@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useTransition } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import {
@@ -8,10 +8,12 @@ import {
 import Rating from "./Rating";
 import { MdDelete } from "react-icons/md";
 import { CiCirclePlus, CiCircleMinus } from "react-icons/ci";
+import { useTranslate } from "../hooks/useTranslate";
 
 const Products = ({ products, handleClick }) => {
   const location = useLocation();
   const dispatch = useDispatch();
+  const { t } = useTranslate();
 
   const navigate = useNavigate();
 
@@ -30,7 +32,7 @@ const Products = ({ products, handleClick }) => {
           <img
             className="w-[100%] aspect-square"
             src={product.image}
-            alt={product.title}
+            alt={t(product.title)}
           />
           <div className="text-gray-900 h-[12rem]">
             <h2
@@ -38,9 +40,10 @@ const Products = ({ products, handleClick }) => {
                 location.pathname === "/cart" ? "line-clamp-1" : "line-clamp-2"
               }`}
             >
-              {product.title}
+              {t(product.title)}
+              {console.log("translation => ", t(product.title.toLowerCase().split(" ").join("_")))}
             </h2>
-            <p className="mb-1 line-clamp-2">{product.description}</p>
+            <p className="mb-1 line-clamp-2">{t(product.description)}</p>
             <p className="flex items-center gap-2 mb-1">
               <Rating rating={product.rating.rate} /> {product.rating.count}
             </p>
@@ -48,7 +51,9 @@ const Products = ({ products, handleClick }) => {
 
             {location.pathname === "/cart" ? (
               <div className="mb-2 flex items-center justify-between">
-                <p>Quantity: {product.cartQuantity} </p>
+                <p>
+                  {t("quantity")}: {product.cartQuantity}{" "}
+                </p>
                 <div className="flex items-center gap-2">
                   <button
                     className="border-none rounded text-2xl"
