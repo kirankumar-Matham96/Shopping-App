@@ -1,3 +1,4 @@
+import React from "react";
 import { setCurrency, currencySelector } from "../redux/slices/currencySlice";
 import { useDispatch, useSelector } from "react-redux";
 import exchangeRates from "../assets/currencyExchange.json";
