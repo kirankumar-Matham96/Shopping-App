@@ -4,6 +4,8 @@ import LanguageChanger from "./LanguageChanger";
 import CurrencyChanger from "./CurrencyChanger";
 import { IoCartOutline, IoCart } from "react-icons/io5";
 import { useTranslate } from "../hooks/useTranslate";
+import { ErrorBoundary } from "react-error-boundary";
+import ErrorComponent from "./ErrorComponent";
 
 const Navbar = () => {
   const { t } = useTranslate();
@@ -29,55 +31,61 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="w-[100%]">
-      <div className="w-[100%] py-2 flex">
-        <div className="mx-auto flex items-center gap-4">
-          <img className="w-[3rem]" src="/shopping-bags.svg" alt="logo-image" />
-          <h1 className="text-4xl font-medium">{t("shopping_app")}</h1>
+    <ErrorBoundary FallbackComponent={ErrorComponent}>
+      <nav className="w-[100%]">
+        <div className="w-[100%] py-2 flex">
+          <div className="mx-auto flex items-center gap-4">
+            <img
+              className="w-[3rem]"
+              src="/shopping-bags.svg"
+              alt="logo-image"
+            />
+            <h1 className="text-4xl font-medium">{t("shopping_app")}</h1>
+          </div>
         </div>
-      </div>
-      <div className="w-[100%] flex justify-between py-5">
-        <div className="flex flex-1 gap-3">
-          <LanguageChanger />
-          <CurrencyChanger />
-        </div>
-        <div>
-          <ul className="flex gap-3">
-            {tabs.map((tab) => (
-              <Link
-                to={tab.navigateTo}
-                key={tab.id}
-                className={`${
-                  activeTab === tab.navigateTo
-                    ? "border-b-blue-700 border-b-2"
-                    : ""
+        <div className="w-[100%] flex justify-between py-5">
+          <div className="flex flex-1 gap-3">
+            <LanguageChanger />
+            <CurrencyChanger />
+          </div>
+          <div>
+            <ul className="flex gap-3">
+              {tabs.map((tab) => (
+                <Link
+                  to={tab.navigateTo}
+                  key={tab.id}
+                  className={`${
+                    activeTab === tab.navigateTo
+                      ? "border-b-blue-700 border-b-2"
+                      : ""
+                  }`}
+                  onClick={() => setActiveTab(tab.navigateTo)}
+                >
+                  <li>{t(tab.tabName)}</li>
+                </Link>
+              ))}
+            </ul>
+          </div>
+          <div className="flex flex-row-reverse flex-1">
+            <Link to="/cart">
+              <button
+                type="button"
+                className={`flex gap-2 ${
+                  activeTab === "/cart" ? "border-b-blue-700 border-b-2" : ""
                 }`}
-                onClick={() => setActiveTab(tab.navigateTo)}
               >
-                <li>{t(tab.tabName)}</li>
-              </Link>
-            ))}
-          </ul>
+                {t("cart")}
+                {activeTab === "/cart" ? (
+                  <IoCart className="text-2xl" />
+                ) : (
+                  <IoCartOutline className="text-2xl" />
+                )}
+              </button>
+            </Link>
+          </div>
         </div>
-        <div className="flex flex-row-reverse flex-1">
-          <Link to="/cart">
-            <button
-              type="button"
-              className={`flex gap-2 ${
-                activeTab === "/cart" ? "border-b-blue-700 border-b-2" : ""
-              }`}
-            >
-              {t("cart")}
-              {activeTab === "/cart" ? (
-                <IoCart className="text-2xl" />
-              ) : (
-                <IoCartOutline className="text-2xl" />
-              )}
-            </button>
-          </Link>
-        </div>
-      </div>
-    </nav>
+      </nav>
+    </ErrorBoundary>
   );
 };
 

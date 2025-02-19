@@ -4,6 +4,8 @@ import { useTranslate } from "../hooks/useTranslate";
 import i18n from "../i18next";
 import { notifySuccess } from "./Notification";
 // import languages from "../locales/languages.json";
+import ErrorComponent from "./ErrorComponent";
+import { ErrorBoundary } from "react-error-boundary";
 
 const LanguageChanger = () => {
   const { language } = useSelector(languageSelector);
@@ -17,7 +19,7 @@ const LanguageChanger = () => {
   };
 
   return (
-    <div>
+    <ErrorBoundary FallbackComponent={ErrorComponent}>
       <select onChange={changeLanguage} value={language}>
         {/* {Object.keys(languages).map((language) => {
           return (
@@ -63,7 +65,7 @@ const LanguageChanger = () => {
           {t("it")}
         </option>
       </select>
-    </div>
+    </ErrorBoundary>
   );
 };
 

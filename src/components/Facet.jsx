@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { lazy, useState } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 import { useTranslate } from "../hooks/useTranslate";
 import { currencySelector } from "../redux/slices/currencySlice.js";
 import { useSelector } from "react-redux";
+
+const ErrorComponent = lazy(() => import("./ErrorComponent.jsx"));
 
 const Facet = ({ title, items, type = "checkbox", onFilterChange }) => {
   const { t } = useTranslate();
@@ -51,8 +53,6 @@ const Facet = ({ title, items, type = "checkbox", onFilterChange }) => {
     setSelectedFilters(updatedFilters);
     onFilterChange(title.toLowerCase(), updatedFilters);
   };
-
-  const ErrorComponent = () => <p>Error in the component</p>;
 
   return (
     <div className="p-2">

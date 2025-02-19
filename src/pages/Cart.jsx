@@ -11,17 +11,14 @@ import RecommendedProducts from "../components/RecommendedProducts";
 import { useTranslate } from "../hooks/useTranslate";
 import { notifySuccess } from "../components/Notification";
 import { formatCurrency } from "../util/formatCurrency.util";
+import { ErrorBoundary } from "react-error-boundary";
+import ErrorComponent from "../components/ErrorComponent";
 
 const Cart = () => {
   const { cartProducts, totalPrice } = useSelector(productsSelector);
   const { currency } = useSelector(currencySelector);
   const dispatch = useDispatch();
   const { t } = useTranslate();
-  /**
-   * // TODO:
-   *  -> Add checkout feature
-   *  -> Language and currency changes by the options
-   *  */
 
   const handleRemoveFromCart = (e, id) => {
     e.stopPropagation();
@@ -35,16 +32,16 @@ const Cart = () => {
 
   if (!cartProducts || cartProducts.length === 0)
     return (
-      <div>
+      <ErrorBoundary FallbackComponent={ErrorComponent}>
         <h2 className="text-center text-2xl m-20">
           {t("no_products_in_the_cart")}
         </h2>
         <RecommendedProducts />
-      </div>
+      </ErrorBoundary>
     );
 
   return (
-    <div>
+    <ErrorBoundary FallbackComponent={ErrorComponent}>
       <h2 className="text-3xl font-semibold mb-5">{t("shopping_cart")}</h2>
       <div className="flex mb-8">
         <div className="flex flex-col w-[25%]">
@@ -67,7 +64,7 @@ const Cart = () => {
         </ul>
       </div>
       <RecommendedProducts />
-    </div>
+    </ErrorBoundary>
   );
 };
 

@@ -9,11 +9,13 @@ import SideBar from "../components/SideBar.jsx";
 import Products from "../components/Products.jsx";
 import Loading from "../components/Loading.jsx";
 import { useTranslate } from "../hooks/useTranslate.js";
+import { ErrorBoundary } from "react-error-boundary";
+import ErrorComponent from "../components/ErrorComponent";
 
 const Shop = () => {
   const { t } = useTranslate();
   const { isLoading, error, filteredProducts, cartProducts } =
-  useSelector(productsSelector);
+    useSelector(productsSelector);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -29,15 +31,11 @@ const Shop = () => {
     dispatch(addToCart(id));
   };
 
-  if (error) return <h1>{t("something_went_wrong!_try_again_later.")}</h1>;
+  if (error) return <ErrorComponent />;
   if (isLoading) return <Loading />;
 
-  /**
-   * // TODO:
-   *  -> Language and currency changes by the options
-   */
   return (
-    <div>
+    <ErrorBoundary FallbackComponent={ErrorComponent}>
       <h2 className="text-3xl font-semibold mb-5">{t("shop")}</h2>
       <div className="flex justify-between">
         <div className="w-[25%]">
@@ -52,7 +50,7 @@ const Shop = () => {
           />
         </ul>
       </div>
-    </div>
+    </ErrorBoundary>
   );
 };
 

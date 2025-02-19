@@ -1,5 +1,11 @@
 @import "tailwindcss";
 
+.home-bg-container{
+  background: linear-gradient(rgba(255,255,255,0.5), rgba(0,0,0,0.5)), url("/landing_image.webp");
+  background-position: center;
+  background-size: cover;
+}
+
 button {
   cursor: pointer;
   transition: all 0.3s;
@@ -12,6 +18,11 @@ button:hover {
 
 button:active {
   transform: translateY(0px);
+}
+
+.rtl-text {
+  direction: rtl;
+  text-align: right;
 }
 
 /* use these theme classes after redux integration */

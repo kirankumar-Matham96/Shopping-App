@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import { useTranslate } from "../hooks/useTranslate";
+import { ErrorBoundary } from "react-error-boundary";
+import ErrorComponent from "../components/ErrorComponent";
 
 const Contact = () => {
   const { t } = useTranslate();
 
   const [countryCode, setCountryCode] = useState("+91");
   return (
-    <div>
+    <ErrorBoundary FallbackComponent={ErrorComponent}>
       <h2 className="text-3xl font-semibold my-5">{t("contact")}</h2>
       <div className="flex items-center">
         <img
@@ -34,7 +36,7 @@ const Contact = () => {
           </ul>
         </div>
       </div>
-    </div>
+    </ErrorBoundary>
   );
 };
 

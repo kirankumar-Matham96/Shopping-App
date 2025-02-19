@@ -1,11 +1,13 @@
 import React from "react";
 import { useTranslate } from "../hooks/useTranslate";
 import { FaHandPointRight } from "react-icons/fa";
+import { ErrorBoundary } from "react-error-boundary";
+import ErrorComponent from "../components/ErrorComponent";
 
 const About = () => {
   const { t } = useTranslate();
   return (
-    <div>
+    <ErrorBoundary FallbackComponent={ErrorComponent}>
       <h2 className="text-3xl font-semibold my-5">{t("about")}</h2>
       <div className="">
         <div className="text-base mr-10">
@@ -88,7 +90,7 @@ const About = () => {
           </div>
         </div>
       </div>
-    </div>
+    </ErrorBoundary>
   );
 };
 

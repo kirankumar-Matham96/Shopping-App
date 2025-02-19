@@ -11,6 +11,8 @@ import { MdDelete } from "react-icons/md";
 import { CiCirclePlus, CiCircleMinus } from "react-icons/ci";
 import { useTranslate } from "../hooks/useTranslate";
 import { formatCurrency } from "../util/formatCurrency.util";
+import { ErrorBoundary } from "react-error-boundary";
+import ErrorComponent from "./ErrorComponent";
 
 const Products = ({ products, handleClick, isInCart }) => {
   const { currency } = useSelector(currencySelector);
@@ -25,7 +27,7 @@ const Products = ({ products, handleClick, isInCart }) => {
   };
 
   return (
-    <>
+    <ErrorBoundary FallbackComponent={ErrorComponent}>
       {products.map((product) => (
         <li
           key={product.id}
@@ -98,7 +100,7 @@ const Products = ({ products, handleClick, isInCart }) => {
           </div>
         </li>
       ))}
-    </>
+    </ErrorBoundary>
   );
 };
 

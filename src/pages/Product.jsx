@@ -7,6 +7,8 @@ import { useDispatch, useSelector } from "react-redux";
 import Rating from "../components/Rating";
 import { useTranslate } from "../hooks/useTranslate";
 import { formatCurrency } from "../util/formatCurrency.util";
+import { ErrorBoundary } from "react-error-boundary";
+import ErrorComponent from "../components/ErrorComponent";
 
 const Product = () => {
   const { t } = useTranslate();
@@ -39,14 +41,14 @@ const Product = () => {
 
   if (!product)
     return (
-      <div>
+      <ErrorBoundary FallbackComponent={ErrorComponent}>
         <h2 className="mb-10">{t("product_not_found!")}</h2>;
         <RecommendedProducts />
-      </div>
+      </ErrorBoundary>
     );
 
   return (
-    <div>
+    <ErrorBoundary FallbackComponent={ErrorComponent}>
       <div className="flex justify-between mb-8 gap-10">
         <div className="w-[50%] p-8 rounded bg-white">
           <img className="" src={product.image} alt={product.title} />
@@ -78,7 +80,7 @@ const Product = () => {
         </div>
       </div>
       <RecommendedProducts />
-    </div>
+    </ErrorBoundary>
   );
 };
 

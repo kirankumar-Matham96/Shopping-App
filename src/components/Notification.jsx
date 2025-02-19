@@ -1,4 +1,6 @@
 import { ToastContainer, toast } from "react-toastify";
+import { ErrorBoundary } from "react-error-boundary";
+import ErrorComponent from "./ErrorComponent";
 
 // functions to display different toast notification
 export const notifySuccess = (message) => toast.success(message);
@@ -12,8 +14,8 @@ export const notifyWarning = (message) => toast.warn(message);
  */
 export const Notification = () => {
   return (
-    <div>
+    <ErrorBoundary FallbackComponent={ErrorComponent}>
       <ToastContainer position="top-right" closeOnClick draggable />
-    </div>
+    </ErrorBoundary>
   );
 };

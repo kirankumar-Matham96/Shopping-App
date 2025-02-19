@@ -6,6 +6,8 @@ import { formatCurrency } from "../util/formatCurrency.util";
 import { useNavigate } from "react-router-dom";
 import Rating from "./Rating";
 import { useTranslate } from "../hooks/useTranslate";
+import { ErrorBoundary } from "react-error-boundary";
+import ErrorComponent from "./ErrorComponent";
 
 const RecommendedProducts = () => {
   const { t } = useTranslate();
@@ -18,7 +20,7 @@ const RecommendedProducts = () => {
   };
 
   return (
-    <div>
+    <ErrorBoundary FallbackComponent={ErrorComponent}>
       <h2 className="text-2xl font-semibold mb-3">
         {t("recommended_products")}
       </h2>
@@ -44,7 +46,7 @@ const RecommendedProducts = () => {
           </li>
         ))}
       </ul>
-    </div>
+    </ErrorBoundary>
   );
 };
 
