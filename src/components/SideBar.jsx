@@ -6,8 +6,10 @@ import {
   filterProducts,
   setFilters,
 } from "../redux/slices/productsSlice";
+import { useTranslate } from "../hooks/useTranslate";
 
 const SideBar = () => {
+  const { t } = useTranslate();
   const { categories } = useSelector(productsSelector);
   const dispatch = useDispatch();
 
@@ -27,7 +29,7 @@ const SideBar = () => {
       />
       <Facet
         title="Rating"
-        items={[`4 & above`, `3 & above`, `2 & above`]}
+        items={[t("4_&_above"), t("3_&_above"), t("2_&_above")]}
         type="checkbox"
         onFilterChange={handleFilterChange}
       />

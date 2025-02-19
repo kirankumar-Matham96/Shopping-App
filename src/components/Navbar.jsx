@@ -3,7 +3,6 @@ import { Link, useLocation } from "react-router-dom";
 import LanguageChanger from "./LanguageChanger";
 import CurrencyChanger from "./CurrencyChanger";
 import { IoCartOutline, IoCart } from "react-icons/io5";
-// import { useTranslation } from "react-i18next";
 import { useTranslate } from "../hooks/useTranslate";
 
 const Navbar = () => {

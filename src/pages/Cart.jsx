@@ -3,42 +3,56 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   productsSelector,
   removeFromCart,
+  clearCart
 } from "../redux/slices/productsSlice";
 import Products from "../components/Products";
 import RecommendedProducts from "../components/RecommendedProducts";
+import { useTranslate } from "../hooks/useTranslate";
+import { notifySuccess } from "../components/Notification";
 
 const Cart = () => {
   const { cartProducts, totalPrice } = useSelector(productsSelector);
   const dispatch = useDispatch();
-
+  const { t } = useTranslate();
   /**
    * // TODO:
-   *  -> Add or Remove features (products to cart)
-   *  -> Calculate the price
    *  -> Add checkout feature
    *  -> Language and currency changes by the options
    *  */
 
-  const handleRemoveFromCart = (id) => {
+  const handleRemoveFromCart = (e, id) => {
+    e.stopPropagation();
     dispatch(removeFromCart(id));
   };
 
+  const handleCheckout = () => {
+    dispatch(clearCart());
+    notifySuccess("Purchase completed!");
+  };
+
   if (!cartProducts || cartProducts.length === 0)
-    return <h2>No Products In the Cart!</h2>;
+    return (
+      <div>
+        <h2 className="text-center text-2xl m-20">
+          {t("no_products_in_the_cart")}
+        </h2>
+        <RecommendedProducts />
+      </div>
+    );
 
   return (
     <div>
-      <h2 className="text-3xl font-semibold mb-5">Shopping Cart</h2>
+      <h2 className="text-3xl font-semibold mb-5">{t("shopping_cart")}</h2>
       <div className="flex mb-8">
         <div className="flex flex-col w-[25%]">
           <p className="text-2xl">
-            Total Price: <br />$ {totalPrice} USD
+            {t("total_price")}: <br />$ {totalPrice} USD
           </p>
           <button
             className="border-2 self-start p-3 mt-3"
-            onClick={() => console.log("Purchase completed!")}
+            onClick={handleCheckout}
           >
-            Checkout
+            {t("checkout")}
           </button>
         </div>
         <ul className="flex flex-wrap gap-3 gap-y-5 w-[80%]">

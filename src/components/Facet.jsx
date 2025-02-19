@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import { ErrorBoundary } from "react-error-boundary";
+import { useTranslate } from "../hooks/useTranslate";
 
 const Facet = ({ title, items, type = "checkbox", onFilterChange }) => {
+  const { t } = useTranslate();
+
   const [selectedFilters, setSelectedFilters] = useState(
     type === "range" ? 1000 : []
   );
@@ -52,9 +55,11 @@ const Facet = ({ title, items, type = "checkbox", onFilterChange }) => {
     <div className="p-2">
       <ErrorBoundary FallbackComponent={ErrorComponent}>
         <div className="flex justify-between items-center px-3">
-          <h2 className="mt-3 mb-2 text-xl font-semibold">{title}</h2>
+          <h2 className="mt-3 mb-2 text-xl font-semibold">
+            {t(title.toLowerCase().split(" ").join("_")) || title}
+          </h2>
           {selectedFilters.length > 0 && type !== "range" && (
-            <button onClick={clearFilters}>Clear</button>
+            <button onClick={clearFilters}>{t("clear")}</button>
           )}
         </div>
         <ul className="px-3">
@@ -76,7 +81,9 @@ const Facet = ({ title, items, type = "checkbox", onFilterChange }) => {
                     )}
                     onChange={handleSelectOption}
                   />
-                  <span>{item}</span>
+                  <span>
+                    {t(item.toLowerCase().split(" ").join("_")) || item}
+                  </span>
                 </label>
               </li>
             ))}
@@ -92,7 +99,9 @@ const Facet = ({ title, items, type = "checkbox", onFilterChange }) => {
                     checked={selectedFilters === value}
                     onChange={handleSelectOption}
                   />
-                  <span>{label}</span>
+                  <span>
+                    {t(label.toLowerCase().split(" ").join("_")) || label}
+                  </span>
                 </label>
               </li>
             ))}

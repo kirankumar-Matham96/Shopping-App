@@ -3,8 +3,10 @@ import { useSelector } from "react-redux";
 import { productsSelector } from "../redux/slices/productsSlice";
 import { useNavigate } from "react-router-dom";
 import Rating from "./Rating";
+import { useTranslate } from "../hooks/useTranslate";
 
 const RecommendedProducts = () => {
+  const { t } = useTranslate();
   const { recommendedProducts } = useSelector(productsSelector);
   const navigate = useNavigate();
 
@@ -14,7 +16,9 @@ const RecommendedProducts = () => {
 
   return (
     <div>
-      <h2 className="text-2xl font-semibold mb-3">Recommended Products</h2>
+      <h2 className="text-2xl font-semibold mb-3">
+        {t("recommended_products")}
+      </h2>
       <ul className="flex flex-wrap justify-between gap-y-4">
         {recommendedProducts.map((product) => (
           <li
@@ -28,7 +32,7 @@ const RecommendedProducts = () => {
               alt={product.name}
             />
             <h3 className="line-clamp-1 text-gray-900 font-semibold">
-              {product.title}
+              {t(product.title)}
             </h3>
             <Rating rating={product.rating.rate} />
             <p className="text-gray-900">$ {product.price} USD</p>

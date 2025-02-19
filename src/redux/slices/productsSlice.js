@@ -1,14 +1,22 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
+import {
+  notifySuccess,
+  notifyInfo,
+  notifyDanger,
+} from "../../components/Notification";
+
 export const fetchProducts = createAsyncThunk(
   "products/fetchProducts",
   async (args, thunkApi) => {
     const { products } = thunkApi.getState().products;
+    console.log("🚀 ~ products:", products);
     if (products.length > 0) return products;
 
     try {
       const response = await axios.get(import.meta.env.VITE_FAKE_STORE_API);
+      console.log("🚀 ~ response.data:", response.data);
       return response.data;
     } catch (error) {
       console.log(`Failed to fetch data: ${error}`);
@@ -95,14 +103,13 @@ const productsSlice = createSlice({
       const isItemExistsInCart = state.cartProducts.find(
         (item) => item.id === action.payload
       );
-      console.log("🚀 ~ isItemExistsInCart:", isItemExistsInCart);
-
       if (!isItemExistsInCart || isItemExistsInCart === -1) {
         item.cartQuantity = 1;
         state.cartProducts.push(item);
       } else {
         isItemExistsInCart.cartQuantity++;
       }
+      notifySuccess("Product added to cart successfully");
       state.totalPrice = calculateTotalPrice(state.cartProducts);
       localStorage.setItem("total_price", JSON.stringify(state.totalPrice));
       localStorage.setItem("cart_products", JSON.stringify(state.cartProducts));
@@ -113,10 +120,12 @@ const productsSlice = createSlice({
       );
       if (item.cartQuantity > 1) {
         item.cartQuantity--;
+        notifyInfo("Product quantity reduced by 1");
       } else {
         state.cartProducts = state.cartProducts.filter(
           (product) => product.id !== action.payload
         );
+        notifyInfo("Product removed from cart");
       }
       state.totalPrice = calculateTotalPrice(state.cartProducts);
       localStorage.setItem("total_price", JSON.stringify(state.totalPrice));
@@ -127,7 +136,13 @@ const productsSlice = createSlice({
         (product) => product.id !== action.payload
       );
       state.totalPrice = calculateTotalPrice(state.cartProducts);
-
+      notifyInfo("Product removed from cart");
+      localStorage.setItem("total_price", JSON.stringify(state.totalPrice));
+      localStorage.setItem("cart_products", JSON.stringify(state.cartProducts));
+    },
+    clearCart: (state) => {
+      state.cartProducts = [];
+      state.totalPrice = 0;
       localStorage.setItem("total_price", JSON.stringify(state.totalPrice));
       localStorage.setItem("cart_products", JSON.stringify(state.cartProducts));
     },
@@ -156,6 +171,7 @@ const productsSlice = createSlice({
       .addCase(fetchProducts.rejected, (state, action) => {
         state.error = action.payload;
         state.isLoading = false;
+        notifyDanger("Failed to fetch products");
       });
   },
 });
@@ -168,6 +184,7 @@ export const {
   addToCart,
   reduceQuantityFromCart,
   removeFromCart,
+  clearCart,
 } = productsSlice.actions;
 // export selector
 export const productsSelector = (state) => state.products;

@@ -1,8 +1,8 @@
 import { useSelector, useDispatch } from "react-redux";
 import { setLanguage, languageSelector } from "../redux/slices/languageSlice";
-// import { useTranslation } from "react-i18next";
 import { useTranslate } from "../hooks/useTranslate";
 import i18n from "../i18next";
+import { notifySuccess } from "./Notification";
 
 const LanguageChanger = () => {
   const { language } = useSelector(languageSelector);
@@ -11,6 +11,7 @@ const LanguageChanger = () => {
   const { t } = useTranslate();
 
   const changeLanguage = (e) => {
+    notifySuccess(`Language changed successfully`);
     dispatch(setLanguage(e.target.value));
     i18n.changeLanguage(e.target.value);
   };

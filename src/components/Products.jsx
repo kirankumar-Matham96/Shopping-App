@@ -1,4 +1,4 @@
-import React, { useTransition } from "react";
+import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import {
@@ -10,7 +10,7 @@ import { MdDelete } from "react-icons/md";
 import { CiCirclePlus, CiCircleMinus } from "react-icons/ci";
 import { useTranslate } from "../hooks/useTranslate";
 
-const Products = ({ products, handleClick }) => {
+const Products = ({ products, handleClick, isInCart }) => {
   const location = useLocation();
   const dispatch = useDispatch();
   const { t } = useTranslate();
@@ -41,7 +41,6 @@ const Products = ({ products, handleClick }) => {
               }`}
             >
               {t(product.title)}
-              {console.log("translation => ", t(product.title.toLowerCase().split(" ").join("_")))}
             </h2>
             <p className="mb-1 line-clamp-2">{t(product.description)}</p>
             <p className="flex items-center gap-2 mb-1">
@@ -57,8 +56,8 @@ const Products = ({ products, handleClick }) => {
                 <div className="flex items-center gap-2">
                   <button
                     className="border-none rounded text-2xl"
-                    onClick={() => {
-                      console.log("Quantity Decreased");
+                    onClick={(e) => {
+                      e.stopPropagation();
                       dispatch(reduceQuantityFromCart(product.id));
                     }}
                   >
@@ -70,8 +69,8 @@ const Products = ({ products, handleClick }) => {
                   </button>
                   <button
                     className="border-none rounded text-2xl"
-                    onClick={() => {
-                      console.log("Quantity Increased");
+                    onClick={(e) => {
+                      e.stopPropagation();
                       dispatch(addToCart(product.id));
                     }}
                   >
@@ -83,11 +82,13 @@ const Products = ({ products, handleClick }) => {
             <button
               type="button"
               className="border-none bg-amber-300 py-1 px-3 rounded-3xl"
-              onClick={() => handleClick(product.id)}
+              onClick={(e) => handleClick(e, product.id)}
             >
               {location.pathname === "/cart"
-                ? "Remove From Cart"
-                : "Add To Cart"}
+                ? t("remove_from_cart") || "Remove From Cart"
+                : isInCart(product.id)
+                ? t("in_cart") || "In Cart"
+                : t("add_to_cart")}
             </button>
           </div>
         </li>

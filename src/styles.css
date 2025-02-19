@@ -1,5 +1,19 @@
 @import "tailwindcss";
 
+button {
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+button:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transform: translateY(-2px);
+}
+
+button:active {
+  transform: translateY(0px);
+}
+
 /* use these theme classes after redux integration */
 .light-theme {
   color: #1d1d1d;
