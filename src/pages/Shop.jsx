@@ -23,7 +23,6 @@ const Shop = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    console.log(filteredProducts);
   }, [filteredProducts]);
 
   const isInCart = (id) => {

@@ -12,14 +12,12 @@
   "dependencies": {
     "@reduxjs/toolkit": "^2.5.1",
     "@tailwindcss/vite": "^4.0.6",
-    "@vitalets/google-translate-api": "^9.2.1",
     "axios": "^1.7.9",
     "dotenv": "^16.4.7",
     "i18next": "^24.2.2",
     "i18next-browser-languagedetector": "^8.0.3",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-dropdown": "^1.11.0",
     "react-error-boundary": "^5.0.0",
     "react-i18next": "^15.4.1",
     "react-icons": "^5.4.0",
@@ -39,7 +37,6 @@
     "eslint-plugin-react-hooks": "^5.0.0",
     "eslint-plugin-react-refresh": "^0.4.18",
     "globals": "^15.14.0",
-    "http-proxy-agent": "^7.0.2",
     "vite": "^6.1.0"
   }
 }

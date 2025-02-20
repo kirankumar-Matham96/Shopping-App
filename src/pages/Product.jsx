@@ -35,7 +35,6 @@ const Product = () => {
   }, [cartProducts]);
 
   const handleAddToCart = () => {
-    console.log("added to cart");
     dispatch(addToCart(product.id));
   };
 
