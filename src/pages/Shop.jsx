@@ -23,7 +23,7 @@ const Shop = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    console.log(filteredProducts)
+    console.log(filteredProducts);
   }, [filteredProducts]);
 
   const isInCart = (id) => {
@@ -36,7 +36,12 @@ const Shop = () => {
   };
 
   if (error) return <ErrorComponent />;
-  if (isLoading) return <Loading />;
+  if (isLoading)
+    return (
+      <div className="loading-bg-container">
+        <Loading />
+      </div>
+    );
 
   return (
     <ErrorBoundary FallbackComponent={ErrorComponent}>

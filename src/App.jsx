@@ -33,7 +33,7 @@ function App() {
         <Notification />
         <Suspense
           fallback={
-            <div className="fixed inset-0 flex items-center justify-center bg-transparent backdrop-blur-xs z-50">
+            <div className="loading-bg-container">
               <Loading />
             </div>
           }

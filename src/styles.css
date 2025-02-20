@@ -1,9 +1,22 @@
 @import "tailwindcss";
 
-.home-bg-container{
-  background: linear-gradient(rgba(255,255,255,0.5), rgba(0,0,0,0.5)), url("/landing_image.webp");
+.home-bg-container {
+  background: linear-gradient(rgba(255, 255, 255, 0.5), rgba(0, 0, 0, 0.5)),
+    url("/landing_image.webp");
   background-position: center;
   background-size: cover;
+}
+
+.loading-bg-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 80vh;
+}
+
+.loading-component{
+  background: linear-gradient(#fff4, #fff4);
 }
 
 button {
