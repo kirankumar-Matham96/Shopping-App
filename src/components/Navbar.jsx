@@ -32,7 +32,7 @@ const Navbar = () => {
 
   return (
     <ErrorBoundary FallbackComponent={ErrorComponent}>
-      <nav className="w-[100%]">
+      <nav className="w-[100%] mb-5 border-b-1 border-violet-300">
         <div className="w-[100%] py-2 flex">
           <div className="mx-auto flex items-center gap-4">
             <img
@@ -54,9 +54,9 @@ const Navbar = () => {
                 <Link
                   to={tab.navigateTo}
                   key={tab.id}
-                  className={`${
+                  className={`font-medium ${
                     activeTab === tab.navigateTo
-                      ? "border-b-blue-700 border-b-2"
+                      ? "border-b-violet-700 border-b-3"
                       : ""
                   }`}
                   onClick={() => setActiveTab(tab.navigateTo)}

@@ -4,7 +4,7 @@ import App from "./App.jsx";
 import "./styles.css";
 import { Provider } from "react-redux";
 import { store } from "./redux/store";
-import * as serviceWorker from "./serviceWorkerRegister.js";
+import { registerSW } from "virtual:pwa-register";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -14,5 +14,4 @@ createRoot(document.getElementById("root")).render(
   </StrictMode>
 );
 
-
-serviceWorker.register()
+registerSW({ immediate: true });
