@@ -22,6 +22,10 @@ const Shop = () => {
     dispatch(fetchProducts());
   }, [dispatch]);
 
+  useEffect(() => {
+    console.log(filteredProducts)
+  }, [filteredProducts]);
+
   const isInCart = (id) => {
     return cartProducts.find((product) => product.id === id);
   };
@@ -43,11 +47,24 @@ const Shop = () => {
           <SideBar />
         </div>
         <ul className="flex flex-wrap gap-3 w-[80%]">
-          <Products
-            products={filteredProducts}
-            handleClick={handleAddToCart}
-            isInCart={isInCart}
-          />
+          {isLoading ? (
+            [...Array(6)].map((_, index) => (
+              <div
+                key={index}
+                className="w-48 h-56 bg-gray-200 animate-pulse"
+              ></div>
+            ))
+          ) : filteredProducts.length > 0 ? (
+            <Products
+              products={filteredProducts}
+              handleClick={handleAddToCart}
+              isInCart={isInCart}
+            />
+          ) : (
+            <p className="text-xl font-semibold ms-20">
+              {t("product_not_found!")}
+            </p>
+          )}
         </ul>
       </div>
     </ErrorBoundary>

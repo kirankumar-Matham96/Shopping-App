@@ -6,7 +6,6 @@ import {
   notifyInfo,
   notifyDanger,
 } from "../../components/Notification";
-import { convertPrice } from "../../util/convertPrice.util";
 
 export const fetchProducts = createAsyncThunk(
   "products/fetchProducts",
@@ -65,7 +64,7 @@ const productsSlice = createSlice({
 
     filterProducts: (state) => {
       const { searchTerm, products, filters } = state;
-      let filtered = [...products]; // Start with a copy of the full products list
+      let filtered = [...products];
 
       // Apply search filter
       if (searchTerm) {
@@ -96,7 +95,7 @@ const productsSlice = createSlice({
           (product) => product.price <= Number(filters.price)
         );
       }
-      state.filteredProducts = filtered; // Finally update the filteredProducts state
+      state.filteredProducts = filtered;
     },
     addToCart: (state, action) => {
       const item = state.products.find(
@@ -147,7 +146,7 @@ const productsSlice = createSlice({
       state.totalPrice = 0;
       localStorage.setItem("total_price", JSON.stringify(state.totalPrice));
       localStorage.setItem("cart_products", JSON.stringify(state.cartProducts));
-    }
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -156,19 +155,19 @@ const productsSlice = createSlice({
       })
       .addCase(fetchProducts.fulfilled, (state, action) => {
         state.products = action.payload;
+        state.filteredProducts = action.payload;
         state.categories = [
           ...new Set(action.payload.map((product) => product.category)),
         ];
         state.recommendedProducts = action.payload
           .filter((product) => product.rating.rate >= 4)
           .slice(0, 6);
-        state.isLoading = false;
-
         localStorage.setItem("products", JSON.stringify(action.payload));
         localStorage.setItem(
           "recommended_products",
           JSON.stringify(state.recommendedProducts)
         );
+        state.isLoading = false;
       })
       .addCase(fetchProducts.rejected, (state, action) => {
         state.error = action.payload;
@@ -178,7 +177,6 @@ const productsSlice = createSlice({
   },
 });
 
-// export actions
 export const {
   filterProducts,
   setFilters,
@@ -188,7 +186,5 @@ export const {
   removeFromCart,
   clearCart,
 } = productsSlice.actions;
-// export selector
 export const productsSelector = (state) => state.products;
-// export reducer
 export default productsSlice.reducer;
